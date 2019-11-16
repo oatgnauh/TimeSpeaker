@@ -136,7 +136,7 @@ function stop()
     flag = false;
     clearInterval(ShowTimer);
     clearInterval(rollTimer);
-    
+    synth.cancel();
     ShowTimer = null;
     rollTimer = null;
 };
