@@ -1,4 +1,5 @@
 var flag ;
+var voiceStatus = true;
 var synth       = window.speechSynthesis;
 const speaker   = new SpeechSynthesisUtterance();
 var voiceSelect = document.querySelector('select');
@@ -54,6 +55,8 @@ function populateVoiceList() 		//弹出声音选项
 
 function TTS(num, fullDate) 	//text to speech
 {
+    if(!voiceStatus)
+        return;
     window.console.log(fullDate);
     speaker.text  = num.toString();
     synth.speak(speaker);
@@ -131,6 +134,23 @@ function startRollig()		//方块移动
     };
 };
 
+function Mute()
+{
+    var buttonText;
+    if(voiceStatus)
+    {
+        synth.pause();
+        buttonText = "Play";
+    }
+    else
+    {
+        synth.resume();
+        buttonText = "Mute";
+    }
+    voiceStatus = !voiceStatus;
+    document.getElementById("mute").innerHTML = buttonText;
+}
+
 function stop()
 {
     flag = false;
@@ -186,10 +206,10 @@ rate.onchange = function() {
         i = t[o - 1];
         return {
             l: o,
-            z: n(i, "zIndex", -1),
-            o: n(i, "opacity", .5),
-            c: n(i, "color", "0,0,0"),
-            n: n(i, "count", 99)
+            z: n(i, "zIndex", -1),      //层级
+            o: n(i, "opacity", 100),     //透明度
+            c: n(i, "color", "255, 0, 0"),    //线条颜色
+            n: n(i, "count", 200)    //线条数量
         }
     }
 
