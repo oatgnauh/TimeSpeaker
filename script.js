@@ -16,7 +16,7 @@ function Init()		//初始化工作
     document.getElementById("time").innerHTML = new Date().toTimeString().substr(0,8)
     document.getElementById('pixblock_vertical').offsetLeft = document.body.offsetWidth/2;
     synth.onvoiceschanged = populateVoiceList;
-    document.getElementById("date").innerHTML = new Date().toDateString();
+    document.getElementById("date").innerHTML = new Date().toDateString() + " @Lichard";
     synth.getVoices();
 };
 
